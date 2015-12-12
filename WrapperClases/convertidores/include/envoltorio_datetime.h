@@ -2,7 +2,7 @@
  * envoltorio_datetime.h
  *
  *  Created on: May 9, 2015
- *      Author: pedro valiente verde
+ *      Author: Pedro Valiente Verde
  */
 
 #ifndef INCLUDE_ENVOLTORIO_DATETIME_H_

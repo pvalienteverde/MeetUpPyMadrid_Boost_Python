@@ -2,7 +2,7 @@
  * envoltorio_objetos_iterables.h
  *
  *  Created on: May 10, 2015
- *      Author: pedro
+ *      Author: Pedro Valiente Verde
  */
 
 #ifndef SCR_ENVOLTORIO_OBJETOS_ITERABLES_H_
