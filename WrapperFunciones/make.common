@@ -1,15 +1,20 @@
 PYTHON_COMPILE_FLAGS = $(shell python3-config --cflags)
 PYTHON_LINK_FLAGS = $(shell python3-config --ldflags)
-PYTHON_EXTENSION_SUFFIX = .so
+PYTHON_EXTENSION_SUFFIX_HOLA = .so
+PYTHON_EXTENSION_SUFFIX_VECTOR = $(PYTHON_EXTENSION_SUFFIX_HOLA)
 BOOST_COMPILE_FLAGS = -I/usr/local/include
 BOOST_LINK_FLAGS = -L/usr/local/lib -lboost_python3
 
 ALL_FLAGS = $(BOOST_COMPILE_FLAGS)  $(PYTHON_COMPILE_FLAGS) $(BOOST_LINK_FLAGS) $(PYTHON_LINK_FLAGS)  
 
-%$(PYTHON_EXTENSION_SUFFIX): %.cpp
+%$(PYTHON_EXTENSION_SUFFIX_HOLA): %.cpp
 	g++ $< -o $@ $(ALL_FLAGS) -fPIC -shared -std=c++14
-	mv $@ Wrappers
+	mv $@ ../Python
+	
+%$(PYTHON_EXTENSION_SUFFIX_VECTOR): %.cpp
+	g++ $< src/vector/multiplicacion.cpp -o $@  $(ALL_FLAGS) -fPIC -shared -std=c++14
+	mv $@ ../Python
 
 clean:
-	rm -f *$(PYTHON_EXTENSION_SUFFIX)
-	rm -f *.o
+	rm -f ../Python/*$(PYTHON_EXTENSION_SUFFIX_HOLA)
+	rm -f ../Python/*.o

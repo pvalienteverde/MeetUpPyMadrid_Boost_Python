@@ -1,28 +1,19 @@
 /*
- * envoltorio_objetos_iterables.h
+ * conversor_std_vector_double.cpp
  *
- *  Created on: May 10, 2015
+ *  Created on: Dec 8, 2015
  *      Author: Pedro Valiente Verde
  */
 
-#ifndef SCR_ENVOLTORIO_OBJETOS_ITERABLES_H_
-#define SCR_ENVOLTORIO_OBJETOS_ITERABLES_H_
-
 #include <iostream>
-#include <list>
-#include <vector>
 #include <boost/python.hpp>
-#include <boost/python/stl_iterator.hpp>
-
-/// Fuente: http://stackoverflow.com/questions/15842126/feeding-a-python-list-into-a-function-taking-in-a-vector-with-boost-python/15940413#15940413
+#include "multiplicacion.h"
+#include "conversor_std_verctor_double.h"
 
 namespace py = boost::python;
 
-namespace convertidores {
-
-template<class T>
 struct ObjetoIterable2Numpy {
-	static PyObject* convert(const T& objeto) {
+	static PyObject* convert(const std::vector<double>& objeto) {
 
 		py::list l;
 		for(auto valor:objeto)
@@ -33,7 +24,6 @@ struct ObjetoIterable2Numpy {
 };
 
 
-template<typename Container>
 struct Numpy2ObjetoIterable {
 
 	/**
@@ -43,7 +33,7 @@ struct Numpy2ObjetoIterable {
 		boost::python::converter::registry::push_back(
 				&Numpy2ObjetoIterable::convertible,
 				&Numpy2ObjetoIterable::construct,
-				py::type_id<Container>());
+				py::type_id<std::vector<double>>());
 
 
 	}
@@ -62,8 +52,8 @@ struct Numpy2ObjetoIterable {
 	 * Convertidor de PyObject a C++
 	 *
 	 * @param object:
-	 * 	      * 1 requisito: Container::value_type debe tener constructor copia
-	 * 	      * 2 requisito: Container pueda ser construido a partir de dos iteradores
+	 * 	      * 1 requisito: std::vector<double>::value_type debe tener constructor copia
+	 * 	      * 2 requisito: std::vector<double> pueda ser construido a partir de dos iteradores
 	 *
 	 * @param data
 	 */
@@ -76,30 +66,24 @@ struct Numpy2ObjetoIterable {
 
 		// Obtain a handle to the memory block that the converter has allocated
 		// for the C++ type.
-		typedef py::converter::rvalue_from_python_storage<Container> storage_type;
+		typedef py::converter::rvalue_from_python_storage<std::vector<double>> storage_type;
 		void* storage = reinterpret_cast<storage_type*>(data)->storage.bytes;
 
-		typedef py::stl_input_iterator<typename Container::value_type> iterator;
+		typedef py::stl_input_iterator<typename std::vector<double>::value_type> iterator;
 
 		// Allocate the C++ type into the converter's memory block, and assign
 		// its handle to the converter's convertible variable.  The C++
-		// container is populated by passing the begin and end iterators of
-		// the python object to the container's constructor.
-		new (storage) Container(iterator(py::object(handle)), // begin
+		// std::vector<double> is populated by passing the begin and end iterators of
+		// the python object to the std::vector<double>'s constructor.
+		new (storage) std::vector<double>(iterator(py::object(handle)), // begin
 		iterator());                      // end
 		data->convertible = storage;
 	}
 };
 
-template <class T>
 void RegistrarObjetosIterables(){
-
 	py::numeric::array::set_module_and_type("numpy", "ndarray");
-	py::to_python_converter<T , ObjetoIterable2Numpy<T > >();
-	convertidores::Numpy2ObjetoIterable<T>();
+	py::to_python_converter<std::vector<double> , ObjetoIterable2Numpy>();
+	Numpy2ObjetoIterable();
 
 }
-
-} /* namespace conversores */
-
-#endif /* SCR_ENVOLTORIO_OBJETOS_ITERABLES_H_ */

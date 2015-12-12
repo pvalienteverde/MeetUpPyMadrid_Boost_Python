@@ -1,12 +1,5 @@
-/*
- * envoltorio_objetos_iterables.h
- *
- *  Created on: May 10, 2015
- *      Author: Pedro Valiente Verde
- */
-
-#ifndef SCR_ENVOLTORIO_OBJETOS_ITERABLES_H_
-#define SCR_ENVOLTORIO_OBJETOS_ITERABLES_H_
+#ifndef _ENVOLTORIO_OBJETOS_ITERABLES_H_
+#define _ENVOLTORIO_OBJETOS_ITERABLES_H_
 
 #include <iostream>
 #include <list>
@@ -100,6 +93,7 @@ void RegistrarObjetosIterables(){
 
 }
 
-} /* namespace conversores */
+} /* namespace convertidores */
 
-#endif /* SCR_ENVOLTORIO_OBJETOS_ITERABLES_H_ */
+#endif /* _ENVOLTORIO_OBJETOS_ITERABLES_H_ */
+

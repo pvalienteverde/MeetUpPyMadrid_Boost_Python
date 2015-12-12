@@ -10,13 +10,13 @@
 
 #include <boost/python.hpp>
 
-void hola_mundo() {
+void HolaMundo() {
 	std::cout << "Hola Mundo" << std::endl;
 }
 
 BOOST_PYTHON_MODULE(ejemplo1)
 {
-	boost::python::def("hola_mundo", hola_mundo,
+	boost::python::def("hola_mundo", HolaMundo,
 			"Funcion que muestra nuestro primer saludo");
 }
 

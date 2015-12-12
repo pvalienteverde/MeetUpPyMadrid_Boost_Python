@@ -10,13 +10,13 @@
 
 #include <boost/python.hpp>
 
-void hola_mundo(const std::string &texto = "Hola python madrid") {
+void HolaMundo(const std::string &texto = "Hola python madrid") {
 	std::cout << texto << std::endl;
 }
 
 BOOST_PYTHON_MODULE(ejemplo2)
 {
-	boost::python::def("hola_mundo", hola_mundo,
+	boost::python::def("hola_mundo", HolaMundo,
 			"Muestra por la pantalla el texto introducido\nArgumentos: \n\t texto: texto a mostrar");
 }
 
