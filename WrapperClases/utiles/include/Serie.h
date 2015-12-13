@@ -105,7 +105,6 @@ private:
 
 };
 
-
 Serie operator+(const Serie& serie, double valor);
 Serie operator-(const Serie& serie, double valor);
 

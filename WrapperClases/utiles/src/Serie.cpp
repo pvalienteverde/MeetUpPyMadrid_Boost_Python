@@ -93,8 +93,8 @@ std::ostream &operator<<(std::ostream &ss, const Serie &serie) {
 
 Serie operator+(const Serie& serie, double valor){
 	auto serie_mod=serie.Copiar();
-	for (auto &valor:serie_mod)
-		valor+=valor;
+	for (auto &valor_serie:serie_mod)
+		valor_serie+=valor;
 	return serie_mod;
 }
 Serie operator-(const Serie& serie, double valor){
