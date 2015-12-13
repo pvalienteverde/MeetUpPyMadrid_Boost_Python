@@ -88,3 +88,7 @@ target/
 *.exe
 *.out
 *.app
+
+# Slides
+*.html
+.ipynb_checkpoints
