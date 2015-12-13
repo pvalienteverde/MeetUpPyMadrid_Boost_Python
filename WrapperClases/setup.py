@@ -51,14 +51,16 @@ PYTHON_FLAGS=todos_flags.decode(encoding='UTF-8').replace('\n','').replace('  ',
 FLAGS=['-c','-fmessage-length=0','-std=c++14']
 FLAGS.extend(PYTHON_FLAGS)
 
-
-# Compilacion de la libreria de convertidores
 c.compile(BuscadorArchivos('convertidores','*.cpp'),output_dir='bin',include_dirs=INCLUDES_CONVERTIBLES_TODOS,extra_preargs=FLAGS)
-c.create_static_lib(BuscadorArchivos('bin/convertidores','*.o'), "convertidores", output_dir='lib', target_lang="c++")
 
-# Compilacion de la libreria Utiles
+objetos_convertidores=BuscadorArchivos('bin/convertidores','*.o')
+c.create_static_lib(objetos_convertidores, "convertidores", output_dir='lib', target_lang="c++")
+
+
 c.compile(BuscadorArchivos('utiles','*.cpp'),output_dir='bin',include_dirs=INCLUDES_UTILES_TODOS,extra_preargs=FLAGS)
-c.create_static_lib(BuscadorArchivos('bin/utiles','*.o'), "utiles", output_dir='lib', target_lang="c++")
+
+objetos_utiles=BuscadorArchivos('bin/utiles','*.o')
+c.create_static_lib(objetos_utiles, "utiles", output_dir='lib', target_lang="c++")
 
 
 
@@ -68,7 +70,7 @@ modulo_wrapper_utiles = Extension('wrapper_utiles',
                     library_dirs=['/usr/local/lib','lib'],
                     extra_compile_args=FLAGS,
                     #extra_objects=[],
-                    sources=BuscadorArchivos('WrapperClases','*.cpp'))   
+                    sources=BuscadorArchivos('wrapper_utiles','*.cpp'))   
 
  
  

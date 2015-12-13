@@ -61,6 +61,7 @@ void exportar_serie() {
 			.def_readonly("resolucion",&utiles::Serie::GetResolucion)
 			.add_property("descripcion",&utiles::Serie::GetDescripcion,&utiles::Serie::SetDescripcion)
 			.def("copiar", &utiles::Serie::Copiar)
+			.def("valores", &utiles::Serie::GetValores,py::return_value_policy<py::copy_const_reference>())
 			.def("__iter__",py::iterator<utiles::Serie>())
 			.def("__getitem__",&GetItemSerie)
 			.def("__getitem__",&GetItemSliceSerie);
