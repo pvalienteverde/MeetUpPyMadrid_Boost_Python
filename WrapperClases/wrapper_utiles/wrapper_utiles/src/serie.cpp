@@ -14,6 +14,7 @@
 #include <include/Serie.h>
 
 #include <numeric>
+#include <sstream>
 
 namespace py = boost::python;
 namespace wrapper_utiles {
@@ -55,13 +56,26 @@ void exportar_serie() {
 	py::scope util_scope = modulo_serie;
 
 	py::class_<utiles::Serie>("Serie",
-			py::init<std::vector<double>, boost::posix_time::ptime const&,py::optional<boost::posix_time::time_duration,std::string> >(( py::arg("datos"), py::arg("fecha_inicio"), py::arg("resolucion")="3600", py::arg("descripcion")="" ), "Constructor de la serie") )
+			py::init<std::vector<double>,
+			         boost::posix_time::ptime const&,
+					 py::optional<
+					              boost::posix_time::time_duration,
+								  std::string>
+	                             >
+	                 (( py::arg("datos"),
+	                    py::arg("fecha_inicio"),
+						py::arg("resolucion")="3600",
+						py::arg("descripcion")=""
+					  ), "Constructor de la serie") )
 			.def("ultima_fecha_valida",&utiles::Serie::UltimaFechaValida)
 			.def("primera_fecha",&utiles::Serie::PrimeraFecha)
 			.def_readonly("resolucion",&utiles::Serie::GetResolucion)
 			.add_property("descripcion",&utiles::Serie::GetDescripcion,&utiles::Serie::SetDescripcion)
-			.def("copiar", &utiles::Serie::Copiar)
 			.def("valores", &utiles::Serie::GetValores,py::return_value_policy<py::copy_const_reference>())
+			.def(str(py::self))
+			.def(repr(py::self))
+			.def(py::self + double())
+			.def(py::self - double())
 			.def("__iter__",py::iterator<utiles::Serie>())
 			.def("__getitem__",&GetItemSerie)
 			.def("__getitem__",&GetItemSliceSerie);

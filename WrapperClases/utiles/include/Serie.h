@@ -51,7 +51,7 @@ public:
 	boost::posix_time::ptime PrimeraFecha() const;
 
 	//TODO: Constructor copia
-	Serie Copiar();
+	Serie Copiar() const;
 
 	/**
 	 * Devuelve los valores en bruto
@@ -66,7 +66,7 @@ public:
 	 *
 	 * @return
 	 */
-	std::string GetDescripcion();
+	std::string GetDescripcion() const;
 	void SetDescripcion(std::string descripcion);
 
 	/**
@@ -104,6 +104,12 @@ private:
 	std::string descripcion;
 
 };
+
+
+Serie operator+(const Serie& serie, double valor);
+Serie operator-(const Serie& serie, double valor);
+
+std::ostream &operator<<(std::ostream &os, const Serie &serie);
 
 } /* namespace serie */
 
