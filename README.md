@@ -18,7 +18,7 @@ Se ha usado las distribuciones facilitadas por el sistema
  * **Python** Utilizamos para todo el paquete **Python3.X**. Si alguien utiliza Python2.X el cambio deberia ser trivial
  * El compilar que mas nos guste. Para esta charla, se utilizara **gcc**
  * Tengo la construmbre de desarrollar en el entorno de programacion Eclipse, por lo que he facilitado los proyectos. Pero no se requiere para este proposito puesto que se ha dejado un makefile para los ejemplos de funciones y setup.py para las clases
-* **Paquetes de python**: [pandas](http://pandas.pydata.org), [numpy](http://www.numpy.org), [bohek](http://bokeh.pydata.org/en/latest) y [ipython](http://ipython.org/)
+* **Paquetes de python**: [pandas](http://pandas.pydata.org), [numpy](http://www.numpy.org), [bokeh](http://bokeh.pydata.org/en/latest) y [ipython](http://ipython.org/)
 
 Es decir:
 ```bash
