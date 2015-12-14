@@ -48,7 +48,7 @@ INCLUDES_WRAPPER_UTILES.extend(PYTHON_INCLUDES)
 todos_flags=subprocess.Popen(['python3-config','--cflags'], stdout=subprocess.PIPE).communicate()[0]
 PYTHON_FLAGS=todos_flags.decode(encoding='UTF-8').replace('\n','').replace('  ',' ').split(' ')
 
-FLAGS=['-c','-fmessage-length=0','-std=c++14']
+FLAGS=['-c','-fmessage-length=0','-std=c++14','-fPIC']
 FLAGS.extend(PYTHON_FLAGS)
 
 c.compile(BuscadorArchivos('convertidores','*.cpp'),output_dir='bin',include_dirs=INCLUDES_CONVERTIBLES_TODOS,extra_preargs=FLAGS)
