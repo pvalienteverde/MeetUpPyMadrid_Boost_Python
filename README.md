@@ -40,6 +40,7 @@ make all
 # Compilamos los ejemplos de wrappers de clases externas
 cd ../WrapperClases
 python3 setup.py build
+cd ..
 ```
 ## Hay dos formas de seguir despues de  la compilacion
 ### 1: Ejecutar el cuaderno de ipython
